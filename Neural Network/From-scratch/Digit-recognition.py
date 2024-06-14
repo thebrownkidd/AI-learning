@@ -34,14 +34,11 @@ def one_hot(y):
     return one_hot_y
 def network_forward(x,weight):
     w1,w2,b1,b2 = weight
-    print(x)
-    print(w1.shape)
-    z1 = np.dot(w1,x) + b1
-    za1 = relu(z1)
-    z2 = np.dot(w2,za1) + b2
-    za2 = softmax(z2)
-    # print(za2)
-    return z1,za1,z2,za2
+    Z1 = w1.dot(x) + b1
+    A1 = relu(Z1)
+    Z2 = w2.dot(A1) + b2
+    A2 = softmax(Z2)
+    return Z1, A1, Z2, A2
 def relu_deriv(x):
     for i in range(len(x)):
         if x[i] > 0:
